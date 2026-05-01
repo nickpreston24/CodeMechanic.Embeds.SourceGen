@@ -6,23 +6,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <!-- Essential for Source Generators -->
     <IsRoslynComponent>true</IsRoslynComponent>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 
-    <Version>1.0.0</Version>
     <Authors>CodeMechanic</Authors>
-    <Description>Strongly-typed embedded resources - goodbye magic strings.</Description>
-    <PackageTags>sourcegenerator;embedded;resources;codemechanic</PackageTags>
+    <Description>Strongly-typed embedded resources Source Generator</Description>
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
   </ItemGroup>
 
-  <!-- This is what makes the generator work when installed via NuGet -->
+  <!-- This is the critical part - force it into the right folder -->
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll"
           Pack="true"
